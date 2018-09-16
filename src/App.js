@@ -10,7 +10,7 @@ import Register from './components/Register/Register';
 import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
 
-const app = new Clarifai.App({
+const app = new Clarifai.App({ 
  apiKey: '66c26976e675482eaa843e8fc6b634ca'
 });
 
