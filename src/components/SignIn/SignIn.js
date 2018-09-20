@@ -27,14 +27,14 @@ class SignIn extends Component {
 			})
 		})
 		.then(response => response.json())
-		.then(data => {
-			if (data === 'success') {
+		.then(user => {
+			if (user.id) {
 				this.props.onRouteChange('home');
-				console.log(this.state);	
 			}})			
 	}
 
 	render() {
+		const { onRouteChange} = this.props;
 		return( 
 			<div className="">
 				<article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">

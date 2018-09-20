@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Register extends Component {
-	constructor() {
-		super();
+class Register extends React.Component {
+	constructor(props) {
+		super(props);
 		this.state = {
-			registerName: '',
 			registerEmail: '',
-			registerPassword: ''
+			registerPassword: '',
+			registerName: ''
 		}
 	}
 
-	onNameRegister = (event) => {
+	onNameChange = (event) => {
 		this.setState({ registerName: event.target.value });
 	}
 
-	onEmailRegister = (event) => {
+	onEmailChange = (event) => {
 		this.setState({ registerEmail: event.target.value });
 	}
 
-	onPasswordRegister = (event) => {
+	onPasswordChange = (event) => {
 		this.setState({ registerPassword: event.target.value });
 	}
 
@@ -41,7 +41,7 @@ class Register extends Component {
 	}
 
 	render() {
-			return(
+		return(
 			<div className="">
 				<article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
 					<main className="pa4 black-80">
@@ -55,7 +55,7 @@ class Register extends Component {
 					        	type="text" 
 					        	name="name"  
 					        	id="name" 
-					        	onChange={this.onNameRegister}
+					        	onChange={this.onNameChange}
 					        />
 					      </div>
 					      <div className="mt3">
@@ -65,7 +65,7 @@ class Register extends Component {
 					        	type="email" 
 					        	name="email-address"  
 					        	id="email-address" 
-					        	onChange={this.onEmailRegister}
+					        	onChange={this.onEmailChange}
 					        />
 					      </div>
 					      <div className="mv3">
@@ -75,7 +75,7 @@ class Register extends Component {
 					        	type="password" 
 					        	name="password"  
 					        	id="password" 
-					        	onChange={this.onPasswordRegister}
+					        	onChange={this.onPasswordChange}
 					        />
 					      </div>
 					    </fieldset>
@@ -93,7 +93,7 @@ class Register extends Component {
 			</div>
 		)
 	}
-
+			
 }
 
 export default Register;
