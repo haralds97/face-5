@@ -26,16 +26,15 @@ class SignIn extends Component {
 				password: this.state.signInPassword
 			})
 		})
-			.then(response => response.json())
-			.then(data => {
-				if (data === 'success') {
-					this.props.onRouteChange('home');
-				}
-			})
+		.then(response => response.json())
+		.then(user => {
+			if (user.id) {
+				this.props.onRouteChange('home');
+			}})			
 	}
 
 	render() {
-		const { onRouteChange } = this.props;
+		const { onRouteChange} = this.props;
 		return( 
 			<div className="">
 				<article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
@@ -66,10 +65,10 @@ class SignIn extends Component {
 					    </fieldset>
 					    <div className="">
 					      <input 
-					      	onClick={this.onSignInSubmit}
 						    className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
 						    type="submit" 
-						    value="Sign in" 
+						    value="Sign in"
+						    onClick={this.onSignInSubmit}
 						  />
 					    </div>
 					    <div className="lh-copy mt3">
