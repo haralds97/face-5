@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Register extends React.Component {
-	constructor(props) {
-		super(props);
+class Register extends Component {
+	constructor() {
+		super();
 		this.state = {
+			registerName: '',
 			registerEmail: '',
-			registerPassword: '',
-			registerName: ''
+			registerPassword: ''
 		}
 	}
 
@@ -14,12 +14,12 @@ class Register extends React.Component {
 		this.setState({ registerName: event.target.value });
 	}
 
-	onEmailChange = (event) => {
-		this.setState({ registerEmail: event.target.value });
-	}
-
 	onPasswordChange = (event) => {
 		this.setState({ registerPassword: event.target.value });
+	}
+
+	onEmailChange = (event) => {
+		this.setState({ registerEmail: event.target.value });
 	}
 
 	onRegisterSubmit = () => {
@@ -32,12 +32,13 @@ class Register extends React.Component {
 				password: this.state.registerPassword
 			})
 		})
-			.then(response => response.json())
-			.then(user => {
-				if (user) {
-					this.props.onRouteChange('home');
-				}
-			})
+		.then(response => response.json())
+		.then(user => {
+			if (user) {
+				this.props.loadUser(user);
+				this.props.onRouteChange('home');				
+			}
+		})
 	}
 
 	render() {
