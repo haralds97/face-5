@@ -28,8 +28,10 @@ class SignIn extends Component {
 		})
 		.then(response => response.json())
 		.then(user => {
-			this.props.loadUser(user);
-			this.props.onRouteChange('home');
+			if (user.id) {
+				this.props.loadUser(user);
+				this.props.onRouteChange('home');
+			}
 		})
 	}
 
@@ -46,7 +48,7 @@ class SignIn extends Component {
 					        <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
 					        <input 
 					        	className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
-					        	type="email" 
+					        	type="email"  
 					        	name="email-address"  
 					        	id="email-address" 
 					        	onChange={this.onEmailChange}
