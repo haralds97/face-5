@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.css'; 
 import Navigation from './components/Navigation/Navigation';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition.js';
 import Logo from './components/Logo/Logo';
@@ -9,10 +9,6 @@ import SignIn from './components/SignIn/SignIn';
 import Register from './components/Register/Register';
 import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';  
-
-const app = new Clarifai.App({ 
- apiKey: '66c26976e675482eaa843e8fc6b634ca'
-});
 
 const particlesOptions = {
 	particles: {
@@ -26,10 +22,7 @@ const particlesOptions = {
 	}
 }
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
+const initialState = {
       input: '',
       imageUrl: '',
       box: {},
@@ -42,7 +35,12 @@ class App extends Component {
         entries: 0,
         joined: ''
       }
-    }
+    };
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = initialState;
   }
 
   loadUser = (data) => {
@@ -78,14 +76,17 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-    app.models
-      .predict(
-        Clarifai.FACE_DETECT_MODEL, 
-        this.state.input
-      )
+      fetch('https://enigmatic-chamber-15926.heroku.com/imageUrl', {
+          method: 'post',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            input: this.state.input
+          })
+        })
+      .then(response0 => response0.json())
       .then(response1 => {
         if (response1) {
-          fetch('http://localhost:3030/image', {
+          fetch('https://enigmatic-chamber-15926.heroku.com/image', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -96,6 +97,7 @@ class App extends Component {
           .then(count => {
             this.setState(Object.assign(this.state.user, { entries: count }));
           })
+          .catch(err => console.log(err)); 
         }
           this.displayFaceBox(this.calculateFaceLocation(response1))
       })
