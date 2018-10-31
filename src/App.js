@@ -78,7 +78,7 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-       fetch('http://localhost:3030/imageUrl', {
+       fetch('https://enigmatic-chamber-15926.herokuapp.com/imageUrl', {
           method: 'post',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
@@ -88,7 +88,7 @@ class App extends Component {
        .then(response0 => response0.json())
       .then(response1 => {
         if (response1) {
-          fetch('http://localhost:3030/image', {
+          fetch('https://enigmatic-chamber-15926.herokuapp.com/image', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
