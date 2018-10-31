@@ -73,9 +73,12 @@ class App extends Component {
      this.setState({ input: event.target.value });
   }
 
+// https://enigmatic-chamber-15926.herokuapp.com
+// http://localhost:3030
+
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-    fetch('https://enigmatic-chamber-15926.herokuapp.com/imageUrl', {
+    fetch('http://localhost:3030/imageUrl', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -85,7 +88,7 @@ class App extends Component {
       .then(response0 => response0.json())
       .then(response1 => {
         if (response1) {
-          fetch('https://enigmatic-chamber-15926.herokuapp.com/image', {
+          fetch('http://localhost:3030/image', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
