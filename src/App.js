@@ -8,7 +8,6 @@ import Rank from './components/Rank/Rank';
 import SignIn from './components/SignIn/SignIn';
 import Register from './components/Register/Register';
 import Particles from 'react-particles-js';
-import Clarifai from 'clarifai';  
 
 const particlesOptions = {
 	particles: {
@@ -41,7 +40,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = initialState;
-  }
+  } 
 
   loadUser = (data) => {
     this.setState({ user: {
@@ -76,7 +75,7 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-      fetch('https://enigmatic-chamber-15926.heroku.com/imageUrl', {
+       fetch('http://localhost:3030/imageUrl', {
           method: 'post',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
@@ -106,7 +105,7 @@ class App extends Component {
 
   onRouteChange = (route) => {
     if (route === 'signout') {
-      this.setState({ isSignedIn: false });
+      this.setState(initialState);
     } else if (route === 'home') {
       this.setState({ isSignedIn: true })
     }
