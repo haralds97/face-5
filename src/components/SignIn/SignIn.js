@@ -18,7 +18,7 @@ class SignIn extends Component {
 	}
  
 	onSignInSubmit = () => {
-		fetch('http://localhost:3030/signin', {
+		fetch('https://enigmatic-chamber-15926.heroku.com/signin', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
@@ -28,7 +28,7 @@ class SignIn extends Component {
 		})
 		.then(response => response.json())
 		.then(user => {
-			console.log(user);
+			// console.log(user);
 			if (user.id) {
 				this.props.loadUser(user);
 				this.props.onRouteChange('home');

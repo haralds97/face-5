@@ -8,9 +8,6 @@ import Rank from './components/Rank/Rank';
 import SignIn from './components/SignIn/SignIn';
 import Register from './components/Register/Register';
 import Particles from 'react-particles-js';
-// import Clarifai from 'clarifai';  
-
-
 
 const particlesOptions = {
 	particles: {
@@ -85,10 +82,10 @@ class App extends Component {
             input: this.state.input
           })
         })
-       .then(response0 => response0.json())
+      .then(response0 => response0.json())
       .then(response1 => {
         if (response1) {
-          fetch('http://localhost:3030/image', {
+          fetch('https://enigmatic-chamber-15926.heroku.com/image', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
